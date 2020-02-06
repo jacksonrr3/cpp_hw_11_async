@@ -4,7 +4,7 @@ project(async VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Threads REQUIRED)
 
-add_library(async SHARED async.cpp async.h command.h observer.h)
+add_library(async SHARED src/async.cpp src/async.h src/command.h src/observer.h)
 
 set_target_properties(async PROPERTIES
     CXX_STANDARD 17
