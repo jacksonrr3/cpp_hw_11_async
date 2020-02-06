@@ -8,7 +8,6 @@
 #include <sstream>
 #include "observer.h"
 
-
 using obs_vec_ptr = std::shared_ptr<std::vector<std::unique_ptr<Observer>>>;
 
 class Command {
