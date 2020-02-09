@@ -10,7 +10,7 @@ namespace async {
 	class User {
 	public:
 		User(std::size_t n){
-			command_handler = std::make_unique<Command>(n, observers);
+			command_handler = std::make_unique<Command>(observers, n);
 			if (observers->empty()) {
 				command_handler->subscribe(std::make_unique<FileObserver>());
 				command_handler->subscribe(std::make_unique<TerminalObserver>());
