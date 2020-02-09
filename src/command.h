@@ -15,13 +15,13 @@ class Command {
 	std::vector<std::string> _comm;
 
 	std::size_t _block_size;
-	int _comm_counter = 0;
+	std::size_t _comm_counter = 0;
 	int _bracket_counter = 0;
 	bool _is_reg = true;
 	std::string _time;
 
 public:
-	Command(std::size_t N, obs_vec_ptr obs):_block_size(N), _obs(obs){}
+	Command(obs_vec_ptr obs, std::size_t N): _obs(obs), _block_size(N) {}
 
 	~Command() {
 		if (_is_reg) {
