@@ -38,7 +38,7 @@ namespace async {
 		}
 		std::string user_str = us->second->str;
 		user_str.append(data, size);
-		int it = user_str.find('\n', 0);
+		auto it = user_str.find('\n', 0);
 		while (it != user_str.npos) {
 			users[id]->command_handler->add_command(user_str.substr(0, it));
 			user_str.erase(0, it + 1);
