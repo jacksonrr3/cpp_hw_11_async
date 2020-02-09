@@ -4,6 +4,8 @@
 #include <vector>
 
 
+
+
 class Observer {
 public:
 	virtual void print(const std::vector<std::string>&, const std::string&) = 0;
@@ -12,9 +14,12 @@ public:
 
 
 class FileObserver : public Observer {
+	static int file_id;
+	
 	virtual void print(const std::vector<std::string>& comm, const std::string& time) {
 		std::ofstream file;
-		std::string path("bulk" + time + ".log");
+		++file_id;
+		std::string path("bulk" + std::to_string(file_id)+ time + ".log");
 		file.open(path);
 		for (auto& command : comm) {
 			file << command << "\n";
