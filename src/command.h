@@ -8,6 +8,7 @@
 #include <sstream>
 #include "observer.h"
 
+
 using obs_vec_ptr = std::shared_ptr<std::vector<std::unique_ptr<Observer>>>;
 
 class Command {
@@ -15,13 +16,13 @@ class Command {
 	std::vector<std::string> _comm;
 
 	std::size_t _block_size;
-	std::size_t _comm_counter = 0;
+	int _comm_counter = 0;
 	int _bracket_counter = 0;
 	bool _is_reg = true;
 	std::string _time;
 
 public:
-	Command(obs_vec_ptr obs, std::size_t N): _obs(obs), _block_size(N) {}
+	Command(std::size_t N, obs_vec_ptr obs):_block_size(N), _obs(obs){}
 
 	~Command() {
 		if (_is_reg) {
@@ -43,6 +44,11 @@ public:
 		ss >> _time;
 	}
 
+	void set_mode(bool b) {
+		_is_reg = b;
+		_bracket_counter = 1;
+	}
+
 	void notify() {
 		for (auto& u : *_obs) {
 			u->print(_comm, _time);
@@ -51,23 +57,26 @@ public:
 		_time.clear();
 	}
 
-	void add_command(const std::string& s ) {
+	void add_command(const std::string& s, bool& u) {
 
 			if (s[0] == '{') {
 				if (_comm_counter) {
 					notify();
 					_comm_counter = 0;
+					//_is_reg = false;
+					u = false;
 				}
 
 				++_bracket_counter;
-				_is_reg = false;
+				//_is_reg = false;
 				return;
 			}
 			else if (s[0] == '}') {
 				--_bracket_counter;
 				if (!_bracket_counter) {
 					notify();
-					_is_reg = true;
+					//_is_reg = true;  
+					u = true;
 				}
 			}
 
@@ -87,3 +96,5 @@ public:
 
 
 };
+
+
