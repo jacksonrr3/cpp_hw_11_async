@@ -21,7 +21,7 @@ class FileObserver : public Observer {
 	virtual void print(const std::vector<std::string>& comm, const std::string& time) {
 		std::ofstream file;
 		++file_id;
-		std::string path("c:\\test\\bulk" + std::to_string(file_id) + time + ".log");
+		std::string path("bulk" + std::to_string(file_id) + time + ".log");
 		file.open(path);
 		for (auto& command : comm) {
 			file << command << "\n";
