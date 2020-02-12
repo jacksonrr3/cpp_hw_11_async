@@ -72,7 +72,7 @@ namespace async {
 	
 		std::string user_str = us->second->_str;
 		user_str.append(data, size);
-		int it = user_str.find('\n', 0);
+		auto it = user_str.find('\n', 0);
 		while (it != user_str.npos) {
 			if (users[id]->is_main()) {
 				users[id]->add_main(user_str.substr(0, it));
