@@ -24,12 +24,12 @@ namespace async {
 
 			main_handler_mutex.lock();
 			if (_main_handler == nullptr) {
-				_main_handler = std::make_shared<Command>(n, observers, "main");
+				_main_handler = std::make_shared<Command>(observers, n, "main");
 				_main_handler->subscribe(std::make_unique<FileObserver>());
 				_main_handler->subscribe(std::make_unique<TerminalObserver>());
 			}
 			main_handler_mutex.unlock();
-			_command_handler = std::make_unique<Command>(n, observers, std::string("user" + std::to_string(id)));
+			_command_handler = std::make_unique<Command>(observers, n, std::string("user" + std::to_string(id)));
 			_command_handler->set_mode(false);
 		}
 
@@ -81,7 +81,7 @@ namespace async {
 		users_mutex.unlock();
 
 		user_str.append(data, size);
-		int it = user_str.find('\n', 0);
+		auto it = user_str.find('\n', 0);
 		while (it != user_str.npos) {
 			std::lock_guard<std::mutex> lg(users_mutex);
 			if (users[id]->is_main()) {
