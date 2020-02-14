@@ -18,13 +18,13 @@ class Command {
 	obs_vec_ptr _obs;
 	commands _comm;
 	std::size_t _block_size;
-	int _comm_counter = 0;
-	int _bracket_counter = 0;
+	std::size_t _comm_counter = 0;
+	std::size_t _bracket_counter = 0;
 	bool _is_reg = true;
 	std::string _time;
 	std::shared_ptr<Metric> _m_main;
 public:
-	Command(std::size_t N, obs_vec_ptr obs, const std::string name):_block_size(N), _obs(obs){
+	Command(obs_vec_ptr obs, std::size_t N, const std::string name): _obs(obs), _block_size(N) {
 		_m_main = std::make_shared<Metric>(name, true);
 		std::lock_guard<std::mutex> lg(metrick_mutex);
 		v_m.emplace_back(_m_main); 
