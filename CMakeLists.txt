@@ -10,6 +10,7 @@ set_target_properties(async PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
+    LINK_FLAGS "-fsanitize=thread"
 )
 
 target_link_libraries(async
