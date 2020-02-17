@@ -6,12 +6,15 @@ find_package(Threads REQUIRED)
 
 add_library(async SHARED src/async.cpp src/async.h)
 
-target_link_libraries(async ${CMAKE_THREAD_LIBS_INIT})
+add_executable(main_test main.cpp)
 
-set_target_properties(async PROPERTIES
+target_link_libraries(async ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(main_test async)
+
+set_target_properties(main_test async PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
-    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra"
+    COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra;-fsanitize=thread"
     LINK_FLAGS "-fsanitize=thread"
 )
 
