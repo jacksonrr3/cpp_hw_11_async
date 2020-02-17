@@ -6,10 +6,7 @@ find_package(Threads REQUIRED)
 
 add_library(async SHARED src/async.cpp src/async.h)
 
-add_executable(main_test src/main.cpp)
-
 target_link_libraries(async ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(main_test async)
 
 set_target_properties(main_test async PROPERTIES
     CXX_STANDARD 17
@@ -31,7 +28,3 @@ set(CPACK_PACKAGE_CONTACT jacksonrr3@yandex.ru)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 
 include(CPack)
-
-enable_testing()
-
-add_test(thread_tests main_test)
