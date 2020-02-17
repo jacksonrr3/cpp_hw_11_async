@@ -31,3 +31,7 @@ set(CPACK_PACKAGE_CONTACT jacksonrr3@yandex.ru)
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 
 include(CPack)
+
+enable_testing()
+
+add_test(thread_tests main_test)
