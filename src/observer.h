@@ -61,7 +61,7 @@ void print_to_terminal(const commands& comm, const std::string&) {
 }
 
 void print_to_file(const commands& comm, const std::string& time) {
-	static int file_id = 11;
+	static std::atomic_int file_id = 11;
 	std::ofstream file;
 	std::string path("bulk" + std::to_string(file_id) + time + ".log");
 	++file_id;
