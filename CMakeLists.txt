@@ -6,7 +6,7 @@ find_package(Threads REQUIRED)
 
 add_library(async SHARED src/async.cpp src/async.h)
 
-add_executable(main_test main.cpp)
+add_executable(main_test src/main.cpp)
 
 target_link_libraries(async ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(main_test async)
