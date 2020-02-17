@@ -8,7 +8,7 @@ add_library(async SHARED src/async.cpp src/async.h)
 
 target_link_libraries(async ${CMAKE_THREAD_LIBS_INIT})
 
-set_target_properties(main_test async PROPERTIES
+set_target_properties(async PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
     COMPILE_OPTIONS "-Wpedantic;-Wall;-Wextra;-fsanitize=thread"
