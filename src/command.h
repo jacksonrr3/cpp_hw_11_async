@@ -75,7 +75,7 @@ public:
 		_m_main->_str_ch += 1;
 
 		if (s[0] == '{') {
-			if (_comm_counter) {
+			if (_comm_counter && _is_reg) {
 				notify();
 				_comm_counter = 0;
 					//_is_reg = false;
